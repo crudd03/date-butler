@@ -42,12 +42,22 @@ function displayRandomCocktail(cocktail) {
     for(let i = 1; i < 16; i++) {
         console.log(i);
         
+        if(cocktail.drinks[0] [`strIngredient${i}`] == null || cocktail.drinks[0] [`strIngredient${i}`] == '') {
+            break;
+        }
+
         let ingredient = document.createElement('list-group-item');
         ingredient.innerHTML = cocktail.drinks[0] [`strMeasure${i}`] + ': ' + cocktail.drinks[0] [`strIngredient${i}`];
 
         drinkSection.appendChild(ingredient);
-        
+    
     }
+
+    let card = document.createElement('card-body');
+    card.innerHTML = cocktail.drinks[0].strInstructions;
+
+    drinkSection.appendChild(card);
+
 }
 
 
