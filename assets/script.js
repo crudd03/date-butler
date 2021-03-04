@@ -33,6 +33,21 @@ function displayRandomCocktail(cocktail) {
     drinkName.innerHTML = cocktail.drinks[0].strDrink;
 
     drinkSection.appendChild(drinkName);
+
+    let img = document.createElement('img');
+    img.src = cocktail.drinks[0].strDrinkThumb;
+
+    drinkSection.appendChild(img);
+
+    for(let i = 1; i < 16; i++) {
+        console.log(i);
+        
+        let ingredient = document.createElement('list-group-item');
+        ingredient.innerHTML = cocktail.drinks[0] [`strMeasure${i}`] + ': ' + cocktail.drinks[0] [`strIngredient${i}`];
+
+        drinkSection.appendChild(ingredient);
+        
+    }
 }
 
 
