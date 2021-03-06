@@ -1,19 +1,80 @@
-// When the user scrolls the page, execute myFunction
-window.onscroll = function () {
-  myFunction();
-};
+let movieGenre = $("#movieGenres");
+let movieType = $("#movieType");
+let rating = $("#rating");
+let releaseDate = $("#releaseDate");
+let movieButton = $("#movieButton");
+let title = $("#title");
+let overview = $("#overview");
+let poster = $("#poster");
+let saveMovieButton = $("#saveMovie");
+let loadMovieButton = $("#loadMovie");
+let randomMovie;
 
-var header = document.getElementById("myHeader");
+let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
 
-var sticky = header.offsetTop;
+function getMovieResults(event) {
+  event.preventDefault();
 
-function myFunction() {
-  if (window.pageYOffset > sticky) {
-    header.classList.add("sticky");
-  } else {
-    header.classList.remove("sticky");
-  }
+  let movieGenreValue = movieGenre.val();
+  let movieTypeValue = movieType.val();
+  let ratingValue = rating.val();
+  let releaseDateValue = releaseDate.val();
+
+  let testMovieURL =
+    "https://api.themoviedb.org/3/discover/movie?api_key=" +
+    movieAPIKey +
+    "&with_genres=" +
+    movieGenreValue +
+    "&sort_by=" +
+    movieTypeValue +
+    "&primary_release_year=" +
+    releaseDateValue +
+    "&certification_country=US&certification=" +
+    ratingValue;
+
+  fetch(testMovieURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      randomMovie =
+        data.results[Math.floor(Math.random() * data.results.length)];
+      let posterSource =
+        "https://image.tmdb.org/t/p/original" + randomMovie.poster_path;
+      console.log(randomMovie);
+      poster.attr("src", posterSource);
+      poster.attr("height", "200px");
+      poster.attr("width", "150px");
+      title.text(randomMovie.title);
+      overview.text(randomMovie.overview);
+    });
 }
+
+function saveMovieResult(event) {
+  event.preventDefault();
+  let savedMovie = localStorage.setItem(
+    "savedMovie",
+    JSON.stringify(randomMovie)
+  );
+}
+
+function loadMovieResult(event) {
+  event.preventDefault();
+  let loadedMovie = JSON.parse(localStorage.getItem("savedMovie"));
+  console.log(loadedMovie);
+  let loadedPoster =
+    "https://image.tmdb.org/t/p/original" + loadedMovie.poster_path;
+  poster.attr("src", loadedPoster);
+  poster.attr("height", "200px");
+  poster.attr("width", "150px");
+  title.text(loadedMovie.title);
+  overview.text(loadedMovie.overview);
+}
+
+movieButton.on("click", getMovieResults);
+saveMovieButton.on("click", saveMovieResult);
+loadMovieButton.on("click", loadMovieResult);
+
 function findDrinkByName(event) {
   event.preventDefault();
 
@@ -80,41 +141,3 @@ function findDinnerByMainIngredient(e) {
 document
   .querySelector("#mealNameSubmit")
   .addEventListener("click", findDinnerByMainIngredient);
-
-// function displayCocktail(cocktail) {
-//     console.log(cocktail.drinks[0]);
-
-//     let drinkSection = document.querySelector('#drink-section');
-
-//     let drinkName = document.createElement('h2');
-//     drinkName.innerHTML = cocktail.drinks[0].strDrink;
-
-//     drinkSection.appendChild(drinkName);
-
-//     let img = document.createElement('img');
-//     img.src = cocktail.drinks[0].strDrinkThumb;
-
-//     drinkSection.appendChild(img);
-
-//     for(let i = 1; i < 16; i++) {
-//         console.log(i);
-
-//         if(cocktail.drinks[0] [`strIngredient${i}`] == null || cocktail.drinks[0] [`strIngredient${i}`] == null) {
-//             break;
-//         }
-
-//         let ingredient = document.createElement('list-group-item');
-//         ingredient.innerHTML = cocktail.drinks[0] [`strMeasure${i}`] + ': ' + cocktail.drinks[0] [`strIngredient${i}`];
-
-//         drinkSection.appendChild(ingredient);
-
-//     }
-
-//     let card = document.createElement('card-body');
-//     card.innerHTML = cocktail.drinks[0].strInstructions;
-
-//     drinkSection.appendChild(card);
-
-// }
-
-// }
