@@ -9,7 +9,6 @@ let poster = $('#poster');
 let saveMovieButton = $('#saveMovie');
 let loadMovieButton = $('#loadMovie');
 let randomMovie;
-let storedMovieObject;
 
 
 let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
@@ -44,7 +43,6 @@ function getMovieResults(event) {
 function saveMovieResult(event) {
     event.preventDefault();
     let savedMovie = localStorage.setItem("savedMovie", JSON.stringify(randomMovie));
-    savedMovieObject = savedMovie;
 }
 
 function loadMovieResult(event) {
@@ -62,3 +60,68 @@ function loadMovieResult(event) {
 movieButton.on('click', getMovieResults);
 saveMovieButton.on('click', saveMovieResult);
 loadMovieButton.on('click', loadMovieResult);
+
+function findDrinkByName(event) {
+    event.preventDefault();
+  
+    let drinkName = document.getElementById('drinkName').value;
+    let drinkNameDiv = document.getElementById('drinkNameDiv');
+    let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
+  
+  //random drink
+  function getCocktail() {
+      fetch(apiUrl).then(function(response) {
+        if (response.status !== 200) {
+          console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+          return;
+        }
+  
+        // Examine the text in the response
+        response.json().then(function(data) {
+          console.log(data);
+        });
+      }
+    )
+    .catch(function(err) {
+      console.log('Fetch Error :-S', err);
+    });
+  }
+  
+  getCocktail(); 
+  
+  }
+  document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
+  
+  //Dinner API
+  
+  function findDinnerByMainIngredient(e) {
+    e.preventDefault();
+  console.log("finding dinner");
+  
+  let mealName = document.getElementById('mealName').value;
+  
+  console.log(mealName);
+  let mealNameDiv = document.getElementById('mealNameDiv');
+  let newAPIURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + mealName;
+  
+  
+  function getMeal() {
+    
+    fetch(newAPIURL).then(function(response) {
+      if (response.status !== 200) {
+        console.log('We have an issue' + response.status);
+        return;
+      }
+      response.json().then(function(data){
+        console.log(data);
+      });
+    })
+  }
+  
+  getMeal();
+  
+  
+  }
+  
+  document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
