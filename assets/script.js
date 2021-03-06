@@ -94,16 +94,18 @@ function findDrinkByName(event) {
   document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
   
   //Dinner API
-  
+
+  let mealPicture = $('#mealPicture');
+  let mealTitle = $('#mealTitle');
+
   function findDinnerByMainIngredient(e) {
     e.preventDefault();
-  console.log("finding dinner");
   
   let mealName = document.getElementById('mealName').value;
   
   console.log(mealName);
   let mealNameDiv = document.getElementById('mealNameDiv');
-  let newAPIURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + mealName;
+  let newAPIURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName;
   
   
   function getMeal() {
@@ -115,6 +117,13 @@ function findDrinkByName(event) {
       }
       response.json().then(function(data){
         console.log(data);
+        randomMeal = data.meals[Math.floor(Math.random() * data.meals.length)];
+        console.log(randomMeal);
+        let mealPictureURL = randomMeal.strMealThumb
+        mealPicture.attr("src", mealPictureURL);
+        mealPicture.attr("height", "300px");
+        mealPicture.attr("width", "300px");
+        mealTitle.text(randomMeal.strMeal);
       });
     })
   }
