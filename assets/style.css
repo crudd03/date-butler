@@ -1,0 +1,37 @@
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+body {
+  background-color: #111;
+}
+.welcome {
+  text-align: center;
+  color: white;
+}
+
+.header {
+  padding: 10px 16px;
+  color: #ffffff;
+}
+
+.content {
+  padding: 16px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.sticky + .content {
+  padding-top: 102px;
+}
+.portfolioConatiner {
+  color: white;
+  text-align: center;
+}
+#drink-section img {
+  width: 10%;
+  height: auto;
+}
