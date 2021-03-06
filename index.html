@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DateButler</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style.css">
-
-    <title>Date Butler</title>
 </head>
 <body>
 
@@ -45,12 +44,54 @@
             </div>
             <div class="col-12 cold-md-6 col-lg-3">
                 <div class="card">
-                    <img src="https://www.allconnect.com/wp-content/uploads/2019/08/best-free-netflix-alternatives-4-vudu.jpg" class="card-img-top" alt="..."/>
-                    <div class="card-body">
-                        <h5 class="card-title">Movie</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ipsa! Minus ratione nisi sequi neque nobis earum? Suscipit quaerat minima autem, et sapiente debitis odit iste quam voluptas porro dicta!</p>
-
-                        <a href="#" class="btn btn-primary">Go here for more details.</a>
+                    <form>
+                        <p>Movie Genre</p>
+                        <select id="movieGenres">
+                            <option value="28">Action</option>
+                            <option value="12">Adventure</option>
+                            <option value="16">Animation</option>
+                            <option value="35">Comedy</option>
+                            <option value="80">Crime</option>
+                            <option value="99">Documentary</option>
+                            <option value="18">Drama</option>
+                            <option value="10751">Family</option>
+                            <option value="14">Fantasy</option>
+                            <option value="36">History</option>
+                            <option value="27">Horror</option>
+                            <option value="10402">Music</option>
+                            <option value="9648">Mystery</option>
+                            <option value="10749">Romance</option>
+                            <option value="878">Science Fiction</option>
+                            <option value="10770">TV Movie</option>
+                            <option value="53">Thriller</option>
+                            <option value="10752">War</option>
+                            <option value="37">Western</option>
+                        </select>
+                        <p>Popular, highest rated, or highest grossing?</p>
+                        <select id="movieType">
+                            <option value="popularity.desc">Popular</option>
+                            <option value="vote_average.desc">Highest Rated</option>
+                            <option value="revenue.desc">Highest Grossing</option>
+                        </select>
+                        <p>MPAA Rating</p>
+                        <select id="rating">
+                            <option value="PG-13">PG-13</option>
+                            <option value="R">R</option>
+                            <option value="NR">NR</option>
+                            <option value="G">G</option>
+                            <option value="PG">PG</option>
+                            <option value="NC-17">NC-17</option>
+                        </select>
+                        <p>Release Date</p>
+                        <input type=text id="releaseDate"><br>
+                        <input type="submit" id="movieButton">
+                        <button id="saveMovie">Save Movie</button>
+                        <button id="loadMovie">Load Movie</button>
+                    </form>
+                    <div id="movieDetails">
+                        <img id="poster">
+                        <div id="title"></div>
+                        <div id="overview"></div>
                     </div>
                 </div>
             </div>
