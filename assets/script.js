@@ -32,8 +32,8 @@ function getMovieResults(event) {
             let posterSource = "https://image.tmdb.org/t/p/original" + randomMovie.poster_path;
             console.log(randomMovie);
             poster.attr("src", posterSource);
-            poster.attr("height", "200px");
-            poster.attr("width", "150px");
+            poster.attr("height", "300px");
+            poster.attr("width", "200px");
             title.text(randomMovie.title);
             overview.text(randomMovie.overview);
 
@@ -51,8 +51,8 @@ function loadMovieResult(event) {
     console.log(loadedMovie);
     let loadedPoster = "https://image.tmdb.org/t/p/original" + loadedMovie.poster_path;
     poster.attr("src", loadedPoster);
-    poster.attr("height", "200px");
-    poster.attr("width", "150px");
+    poster.attr("height", "300px");
+    poster.attr("width", "200px");
     title.text(loadedMovie.title);
     overview.text(loadedMovie.overview);
 }
