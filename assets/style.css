@@ -1,6 +1,29 @@
-
-
 #drink-section img {
     width: 10%;
     height: auto;
+}
+
+body {
+    background-color: black;
+}
+
+p {
+    color: white;
+}
+
+h5 {
+    color: white;
+}
+
+div {
+    color: white;
+}
+
+.card {
+    background-color: black;
+    color: white;
+}
+
+.header {
+    background-color: black;
 }
