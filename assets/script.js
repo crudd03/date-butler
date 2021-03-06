@@ -13,6 +13,16 @@ let randomMovie;
 
 let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
 
+//drink variables
+let drinkPoster = $('#drinkImg')
+let drinkTitle = $('#drinkTitle');
+let drinkRecipeInfo = $('#drinkRecipeInfo');
+let drinkIngredients = $('#drinkIngredients');
+let drinkRecipe = $('#drinkRecipe');
+let saveDrinkButton = $('#saveDrink');
+let loadDrinkButton = $('#loadDrink');
+let randomDrink;
+
 function getMovieResults(event) {
     event.preventDefault();
 
@@ -68,7 +78,7 @@ function findDrinkByName(event) {
     let drinkNameDiv = document.getElementById('drinkNameDiv');
     let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
   
-  //random drink
+  // drink
   function getCocktail() {
       fetch(apiUrl).then(function(response) {
         if (response.status !== 200) {
@@ -79,7 +89,33 @@ function findDrinkByName(event) {
   
         // Examine the text in the response
         response.json().then(function(data) {
-          console.log(data);
+          
+          randomDrink = data.drinks[Math.floor(Math.random() * data.drinks.length)];
+          console.log(randomDrink);
+
+          drinkPoster.attr("src", randomDrink.strDrinkThumb);
+          drinkPoster.attr("height", "300px");
+          drinkPoster.attr("width", "300px");
+          drinkTitle.text(randomDrink.strDrink);
+          const ingredientList = [];
+          
+          for (let i = 1; i < 16; i++) {
+
+            let drinkIngredient = randomDrink['strIngredient' + i];
+            let drinkMeasure = randomDrink['strMeasure' + i];
+            if(drinkIngredient === null) {
+        
+              break;
+            }
+            console.log(drinkIngredient);
+            console.log(drinkMeasure);
+            let ingredients = drinkMeasure + ": " + drinkIngredient;
+            ingredientsOl = $("<ol>");
+            ingredientsOl.text(ingredients);
+            drinkIngredients.append(ingredientsOl);
+          }
+          drinkRecipeInfo.text(randomDrink.strInstructions);
+
         });
       }
     )
