@@ -2,9 +2,9 @@
 function findDrinkByName(event) {
   event.preventDefault();
 
-  const drinkName = document.getElementById('drinkName').value;
-  const drinkNameDiv = document.getElementById('drinkNameDiv');
-  const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
+  let drinkName = document.getElementById('drinkName').value;
+  let drinkNameDiv = document.getElementById('drinkNameDiv');
+  let apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
 
 //random drink
 function getCocktail() {
@@ -27,6 +27,61 @@ function getCocktail() {
 }
 
 getCocktail(); 
+
+}
+document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
+
+//Dinner API
+
+function findDinnerByMainIngredient(e) {
+  e.preventDefault();
+console.log("finding dinner");
+
+let mealName = document.getElementById('mealName').value;
+
+console.log(mealName);
+let mealNameDiv = document.getElementById('mealNameDiv');
+let newAPIURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + mealName;
+
+
+function getMeal() {
+  
+  fetch(newAPIURL).then(function(response) {
+    if (response.status !== 200) {
+      console.log('We have an issue' + response.status);
+      return;
+    }
+    response.json().then(function(data){
+      console.log(data);
+    });
+  })
+}
+
+getMeal();
+
+
+}
+
+document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -67,4 +122,3 @@ getCocktail();
 // }
 
 // }
-}document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
