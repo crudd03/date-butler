@@ -19,6 +19,7 @@ let drinkTitle = $('#drinkTitle');
 let drinkRecipeInfo = $('#drinkRecipeInfo');
 let drinkIngredients = $('#drinkIngredients');
 let drinkRecipe = $('#drinkRecipe');
+let findDrinkButton = $('#drinkNameSubmit');
 let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
 let randomDrink;
@@ -80,6 +81,7 @@ function findDrinkByName(event) {
   
   // drink
   function getCocktail() {
+    event.preventDefault();
       fetch(apiUrl).then(function(response) {
         if (response.status !== 200) {
           console.log('Looks like there was a problem. Status Code: ' +
@@ -98,7 +100,7 @@ function findDrinkByName(event) {
           drinkPoster.attr("width", "300px");
           drinkTitle.text(randomDrink.strDrink);
           const ingredientList = [];
-          
+          drinkIngredients.text("");
           for (let i = 1; i < 16; i++) {
 
             let drinkIngredient = randomDrink['strIngredient' + i];
@@ -127,7 +129,28 @@ function findDrinkByName(event) {
   getCocktail(); 
   
   }
-  document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
+  findDrinkButton.on('click', findDrinkByName);
+  saveDrinkButton.on('click', saveDrinkResult);
+  loadDrinkButton.on('click', loadDrinkResult);
+
+  function saveDrinkResult(event) {
+    event.preventDefault();
+    let savedDrink = localStorage.setItem("savedDrink", JSON.stringify(randomDrink));
+  }
+
+  function loadDrinkResult(event) {
+    event.preventDefault();
+    let loadedDrink = JSON.parse(localStorage.getItem("savedDrink"));
+    console.log(loadedDrink);
+    let loadedDrinkPoster = loadedDrink.strDrinkThumb;
+    drinkPoster.attr("src", loadedDrink.strDrinkThumb);
+    drinkPoster.attr("height", "300px");
+    drinkPoster.attr("width", "300px");
+    drinkTitle.text(loadedDrink.strDrink);
+    drinkIngredients.append(loadedDrink.ingredients);
+    drinkRecipeInfo.text(loadedDrink.strInstructions);
+    
+}
   
   //Dinner API
 
