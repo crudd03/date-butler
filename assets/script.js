@@ -158,8 +158,7 @@ findDrinkButton.on('click', findDrinkByName);
 saveDrinkButton.on('click', saveDrinkResult);
 loadDrinkButton.on('click', loadDrinkResult);
 
-// Button listener for drink button
-document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
+
   
 // Dinner Variables
 let mealPicture = $('#mealPicture');
