@@ -76,6 +76,7 @@ let drinkTitle = $('#drinkTitle');
 let drinkRecipeInfo = $('#drinkRecipeInfo');
 let drinkIngredients = $('#drinkIngredients');
 let drinkRecipe = $('#drinkRecipe');
+let findDrinkButton = $('#drinkNameSubmit');
 let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
 let randomDrink;
@@ -106,7 +107,7 @@ function findDrinkByName(event) {
             drinkPoster.attr("width", "300px");
             drinkTitle.text(randomDrink.strDrink);
             const ingredientList = [];
-            
+            drinkIngredients.text("");
             for (let i = 1; i < 16; i++) {
               // Address null values for drinkMeasure
               let drinkIngredient = randomDrink['strIngredient' + i];
@@ -135,6 +136,27 @@ function findDrinkByName(event) {
       getCocktail(); 
   
 }
+function saveDrinkResult(event) {
+  event.preventDefault();
+  let savedDrink = localStorage.setItem("savedDrink", JSON.stringify(randomDrink));
+}
+
+function loadDrinkResult(event) {
+  event.preventDefault();
+  let loadedDrink = JSON.parse(localStorage.getItem("savedDrink"));
+  console.log(loadedDrink);
+  let loadedDrinkPoster = loadedDrink.strDrinkThumb;
+  drinkPoster.attr("src", loadedDrink.strDrinkThumb);
+  drinkPoster.attr("height", "300px");
+  drinkPoster.attr("width", "300px");
+  drinkTitle.text(loadedDrink.strDrink);
+  drinkIngredients.append(loadedDrink.ingredients);
+  drinkRecipeInfo.text(loadedDrink.strInstructions);
+  
+}
+findDrinkButton.on('click', findDrinkByName);
+saveDrinkButton.on('click', saveDrinkResult);
+loadDrinkButton.on('click', loadDrinkResult);
 
 // Button listener for drink button
 document.querySelector('#drinkNameSubmit').addEventListener('click', findDrinkByName);
