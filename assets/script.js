@@ -222,6 +222,8 @@ getMeal();
     mealPicture.attr("height", "300px");
     mealPicture.attr("width", "300px");
     mealTitle.text(loadedMeal.strMeal);
+    mealRecipe.attr("href", loadedMeal.strYoutube);
+    mealRecipe.attr("target", "_blank");
   }
 
   document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
