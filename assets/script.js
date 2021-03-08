@@ -129,9 +129,7 @@ function findDrinkByName(event) {
   getCocktail(); 
   
   }
-  findDrinkButton.on('click', findDrinkByName);
-  saveDrinkButton.on('click', saveDrinkResult);
-  loadDrinkButton.on('click', loadDrinkResult);
+  
 
   function saveDrinkResult(event) {
     event.preventDefault();
@@ -151,6 +149,9 @@ function findDrinkByName(event) {
     drinkRecipeInfo.text(loadedDrink.strInstructions);
     
 }
+  findDrinkButton.on('click', findDrinkByName);
+  saveDrinkButton.on('click', saveDrinkResult);
+  loadDrinkButton.on('click', loadDrinkResult);
   
   //Dinner API
 
