@@ -37,6 +37,13 @@ div {
     font-style: italic;
 }
 
+.btn-custom {
+  background-color: #900;
+  color: black;
+  border: #900;
+  border-radius: 0;
+}
+
 /* .fade-out-save {
     color: green;
     font-style: italic;
