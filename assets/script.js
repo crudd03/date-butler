@@ -118,7 +118,13 @@ function findDrinkByName(event) {
               }
               console.log(drinkIngredient);
               console.log(drinkMeasure);
-              let ingredients = drinkMeasure + ": " + drinkIngredient;
+              let ingredients = "";
+              if (drinkMeasure === null) {
+                ingredients = drinkIngredient;
+              }else {
+                ingredients = drinkMeasure + ": " + drinkIngredient;
+              }
+              
               ingredientsOl = $("<ol>");
               ingredientsOl.text(ingredients);
               drinkIngredients.append(ingredientsOl);
@@ -162,7 +168,12 @@ function loadDrinkResult(event) {
     }
     console.log(drinkIngredientLoad);
     console.log(drinkMeasureLoad);
-    let ingredientsLoad = drinkMeasureLoad + ": " + drinkIngredientLoad;
+    let ingredientsLoad = "";
+      if (drinkMeasureLoad === null) {
+        ingredientsLoad = drinkIngredientLoad;
+      }else {
+        ingredientsLoad = drinkMeasureLoad + ": " + drinkIngredientLoad;
+      }
     ingredientsOlLoad = $("<ol>");
     ingredientsOlLoad.text(ingredientsLoad);
     drinkIngredients.append(ingredientsOlLoad);
