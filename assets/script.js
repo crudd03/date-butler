@@ -150,9 +150,25 @@ function loadDrinkResult(event) {
   drinkPoster.attr("height", "300px");
   drinkPoster.attr("width", "300px");
   drinkTitle.text(loadedDrink.strDrink);
-  drinkIngredients.append(loadedDrink.ingredients);
   drinkRecipeInfo.text(loadedDrink.strInstructions);
+  drinkIngredients.text("");
+  for (let i = 1; i < 16; i++) {
+    // Address null values for drinkMeasure
+    let drinkIngredientLoad = loadedDrink['strIngredient' + i];
+    let drinkMeasureLoad = loadedDrink['strMeasure' + i];
+    if(drinkIngredientLoad === null) {
+
+      break;
+    }
+    console.log(drinkIngredientLoad);
+    console.log(drinkMeasureLoad);
+    let ingredientsLoad = drinkMeasureLoad + ": " + drinkIngredientLoad;
+    ingredientsOlLoad = $("<ol>");
+    ingredientsOlLoad.text(ingredientsLoad);
+    drinkIngredients.append(ingredientsOlLoad);
   
+  
+  }
 }
 findDrinkButton.on('click', findDrinkByName);
 saveDrinkButton.on('click', saveDrinkResult);
