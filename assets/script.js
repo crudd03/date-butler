@@ -79,6 +79,7 @@ let drinkRecipe = $('#drinkRecipe');
 let findDrinkButton = $('#drinkNameSubmit');
 let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
+let saveDrinkFeedback = $('#saveDrinkFeedback');
 let randomDrink;
 
 // Function for getting drink results from API
@@ -130,7 +131,7 @@ function findDrinkByName(event) {
               drinkIngredients.append(ingredientsOl);
             }
             drinkRecipeInfo.text(randomDrink.strInstructions);
-
+            saveDrinkFeedback.text("");
           });
         }
       )
@@ -145,6 +146,7 @@ function findDrinkByName(event) {
 function saveDrinkResult(event) {
   event.preventDefault();
   let savedDrink = localStorage.setItem("savedDrink", JSON.stringify(randomDrink));
+  saveDrinkFeedback.text("Drink Saved!");
 }
 
 function loadDrinkResult(event) {
@@ -177,7 +179,7 @@ function loadDrinkResult(event) {
     ingredientsOlLoad = $("<ol>");
     ingredientsOlLoad.text(ingredientsLoad);
     drinkIngredients.append(ingredientsOlLoad);
-  
+    saveDrinkFeedback.text("Drink Loaded!");
   
   }
 }
@@ -194,6 +196,7 @@ let randomMeal;
 let saveMeal = $('#saveMeal');
 let loadMeal = $('#loadMeal');
 let mealRecipe = $('#mealRecipe');
+let saveMealFeedback = $('#saveMealFeedback');
 
 // Function for getting meal results from API
 function findDinnerByMainIngredient(e) {
@@ -226,6 +229,7 @@ function findDinnerByMainIngredient(e) {
         mealRecipe.attr("href", randomMeal.strYoutube);
         mealRecipe.attr("target", "_blank");
         mealRecipe.text("YouTube recipe");
+        saveMealFeedback.text("");
       });
     })
   }
@@ -238,6 +242,7 @@ getMeal();
   function saveMealResult(event) {
     event.preventDefault();
     let savedMeal = localStorage.setItem("savedMeal", JSON.stringify(randomMeal));
+    saveMealFeedback.text("Meal Saved!");
 }
 
   function loadMealResult(event) {
@@ -251,6 +256,7 @@ getMeal();
     mealTitle.text(loadedMeal.strMeal);
     mealRecipe.attr("href", loadedMeal.strYoutube);
     mealRecipe.attr("target", "_blank");
+    saveMealFeedback.text("Meal Loaded!");
   }
 
   document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
