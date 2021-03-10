@@ -14,9 +14,16 @@ let randomMovie;
 
 let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
 
+
 poster.attr("src", "assets/images/movie-placeholder.png");
 poster.attr("height", "300px");
 poster.attr("width", "300px");
+
+saveMovieButton.css("opacity", "0.2");
+saveMovieButton.css("pointer-events", "none");
+loadMovieButton.css("opacity", "0.2");
+loadMovieButton.css("pointer-events", "none");
+
 
 // Function for geting movie results from API
 function getMovieResults(event) {
@@ -43,6 +50,8 @@ function getMovieResults(event) {
             title.text(randomMovie.title);
             overview.text(randomMovie.overview);
             saveMovieFeedback.text("");
+            saveMovieButton.css("opacity", "1.0");
+            saveMovieButton.css("pointer-events", "all");
         });
 }
 
@@ -51,6 +60,8 @@ function saveMovieResult(event) {
     event.preventDefault();
     let savedMovie = localStorage.setItem("savedMovie", JSON.stringify(randomMovie));
     saveMovieFeedback.text("Movie Saved!");
+    loadMovieButton.css("opacity", "1.0");
+    loadMovieButton.css("pointer-events", "all");
     // saveMovieFeedback.attr("class", "fade-out-save");
 }
 
@@ -86,9 +97,16 @@ let loadDrinkButton = $('#loadDrink');
 let saveDrinkFeedback = $('#saveDrinkFeedback');
 let randomDrink;
 
+
 drinkPoster.attr("src", "assets/images/drink-placeholder.png");
 drinkPoster.attr("height", "300px");
 drinkPoster.attr("width", "300px");
+
+saveDrinkButton.css("opacity", "0.2");
+saveDrinkButton.css("pointer-events", "none");
+loadDrinkButton.css("opacity", "0.2");
+loadDrinkButton.css("pointer-events", "none");
+
 
 // Function for getting drink results from API
 function findDrinkByName(event) {
@@ -140,6 +158,8 @@ function findDrinkByName(event) {
             }
             drinkRecipeInfo.text(randomDrink.strInstructions);
             saveDrinkFeedback.text("");
+            saveDrinkButton.css("opacity", "1.0");
+            saveDrinkButton.css("pointer-events", "all");
           });
         }
       )
@@ -155,6 +175,8 @@ function saveDrinkResult(event) {
   event.preventDefault();
   let savedDrink = localStorage.setItem("savedDrink", JSON.stringify(randomDrink));
   saveDrinkFeedback.text("Drink Saved!");
+  loadDrinkButton.css("opacity", "1.0");
+  loadDrinkButton.css("pointer-events", "all");
 }
 
 function loadDrinkResult(event) {
@@ -206,9 +228,16 @@ let loadMeal = $('#loadMeal');
 let mealRecipe = $('#mealRecipe');
 let saveMealFeedback = $('#saveMealFeedback');
 
+
 mealPicture.attr("src", "assets/images/meal-placeholder.png");
 mealPicture.attr("height", "300px");
 mealPicture.attr("width", "300px");
+
+saveMeal.css("opacity", "0.2");
+saveMeal.css("pointer-events", "none");
+loadMeal.css("opacity", "0.2");
+loadMeal.css("pointer-events", "none");
+
 
 // Function for getting meal results from API
 function findDinnerByMainIngredient(e) {
@@ -242,6 +271,8 @@ function findDinnerByMainIngredient(e) {
         mealRecipe.attr("target", "_blank");
         mealRecipe.text("YouTube recipe");
         saveMealFeedback.text("");
+        saveMeal.css("opacity", "1.0");
+        saveMeal.css("pointer-events", "all");
       });
     })
   }
@@ -255,6 +286,8 @@ getMeal();
     event.preventDefault();
     let savedMeal = localStorage.setItem("savedMeal", JSON.stringify(randomMeal));
     saveMealFeedback.text("Meal Saved!");
+    loadMeal.css("opacity", "1.0");
+    loadMeal.css("pointer-events", "all");
 }
 
   function loadMealResult(event) {
