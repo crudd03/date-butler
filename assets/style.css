@@ -48,6 +48,12 @@ div {
   height: 300px;
   width: 300px;
 }
+
+.findError {
+    color: red;
+    font-style: italic;
+}
+
 /* .fade-out-save {
     color: green;
     font-style: italic;

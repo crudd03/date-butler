@@ -95,6 +95,7 @@ let findDrinkButton = $('#drinkNameSubmit');
 let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
 let saveDrinkFeedback = $('#saveDrinkFeedback');
+let drinkError = $('#drinkError');
 let randomDrink;
 
 
@@ -125,7 +126,11 @@ function findDrinkByName(event) {
           }
           
           response.json().then(function(data) {
-            
+            if (data.drinks === null) {
+              drinkError.text("No search results returned. Please try again.")
+            } else {
+              drinkError.text("");
+            }
             randomDrink = data.drinks[Math.floor(Math.random() * data.drinks.length)];
             console.log(randomDrink);
 
@@ -177,6 +182,7 @@ function saveDrinkResult(event) {
   saveDrinkFeedback.text("Drink Saved!");
   loadDrinkButton.css("opacity", "1.0");
   loadDrinkButton.css("pointer-events", "all");
+  drinkError.text("");
 }
 
 function loadDrinkResult(event) {
@@ -210,7 +216,7 @@ function loadDrinkResult(event) {
     ingredientsOlLoad.text(ingredientsLoad);
     drinkIngredients.append(ingredientsOlLoad);
     saveDrinkFeedback.text("Drink Loaded!");
-  
+    drinkError.text("");
   }
 }
 findDrinkButton.on('click', findDrinkByName);
@@ -227,6 +233,7 @@ let saveMeal = $('#saveMeal');
 let loadMeal = $('#loadMeal');
 let mealRecipe = $('#mealRecipe');
 let saveMealFeedback = $('#saveMealFeedback');
+let mealError = $('mealError');
 
 
 mealPicture.attr("src", "assets/images/meal-placeholder.png");
@@ -259,6 +266,11 @@ function findDinnerByMainIngredient(e) {
       }
       // Add a link out to the site
       response.json().then(function(data){
+        if (data.meals === null) {
+          mealError.text("No search results returned. Please try again.")
+        } else {
+          mealError.text("");
+        }
         console.log(data);
         randomMeal = data.meals[Math.floor(Math.random() * data.meals.length)];
         console.log(randomMeal);
@@ -288,6 +300,7 @@ getMeal();
     saveMealFeedback.text("Meal Saved!");
     loadMeal.css("opacity", "1.0");
     loadMeal.css("pointer-events", "all");
+    mealError.text("");
 }
 
   function loadMealResult(event) {
@@ -302,6 +315,7 @@ getMeal();
     mealRecipe.attr("href", loadedMeal.strYoutube);
     mealRecipe.attr("target", "_blank");
     saveMealFeedback.text("Meal Loaded!");
+    mealError.text("");
   }
 
   document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
