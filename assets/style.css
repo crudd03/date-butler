@@ -5,6 +5,7 @@
 
 body {
     background-color: black;
+    font-family: 'Shippori Mincho B1', serif;
 }
 
 p {
@@ -19,6 +20,11 @@ div {
     color: white;
 }
 
+#description {
+  background-color: #900;
+  color: black;
+  border-radius: 20px;
+}
 .card {
     background-color: black;
     color: white;
@@ -48,6 +54,8 @@ div {
   height: 300px;
   width: 300px;
 }
+
+
 /* .fade-out-save {
     color: green;
     font-style: italic;
