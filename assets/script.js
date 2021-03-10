@@ -14,6 +14,10 @@ let randomMovie;
 
 let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
 
+poster.attr("src", "assets/images/movie-placeholder.png");
+poster.attr("height", "300px");
+poster.attr("width", "300px");
+
 // Function for geting movie results from API
 function getMovieResults(event) {
     event.preventDefault();
@@ -81,6 +85,10 @@ let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
 let saveDrinkFeedback = $('#saveDrinkFeedback');
 let randomDrink;
+
+drinkPoster.attr("src", "assets/images/drink-placeholder.png");
+drinkPoster.attr("height", "300px");
+drinkPoster.attr("width", "300px");
 
 // Function for getting drink results from API
 function findDrinkByName(event) {
@@ -197,6 +205,10 @@ let saveMeal = $('#saveMeal');
 let loadMeal = $('#loadMeal');
 let mealRecipe = $('#mealRecipe');
 let saveMealFeedback = $('#saveMealFeedback');
+
+mealPicture.attr("src", "assets/images/meal-placeholder.png");
+mealPicture.attr("height", "300px");
+mealPicture.attr("width", "300px");
 
 // Function for getting meal results from API
 function findDinnerByMainIngredient(e) {
