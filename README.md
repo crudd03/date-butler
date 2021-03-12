@@ -9,6 +9,21 @@ https://crudd03.github.io/date-butler/
 DateButler gives random cocktail, meal and movie suggestions based off either no user input or basic user input.  It provides ingredients and instructions or a link to more information. It provides a movie title and movie description.
 
 ---
+
+## Technologies used:
+* HTML
+* JavaScript
+* CSS
+* Bootstrap 5
+* JQuery
+*  Googlefonts
+* API:
+    * TheMealDB
+    * TheCocktailDB
+    * TMDb
+
+
+---
 ## User Experience
 
 GIVEN I need date night ideas<br>
