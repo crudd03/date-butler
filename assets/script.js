@@ -14,16 +14,16 @@ let randomMovie;
 
 let movieAPIKey = "50c12291de6c61f2b38b94e827184d47";
 
-
+// Stock movie image
 poster.attr("src", "assets/images/movie-placeholder.png");
 poster.attr("height", "300px");
 poster.attr("width", "300px");
 
+// Disabling save/load buttons on app start
 saveMovieButton.css("opacity", "0.2");
 saveMovieButton.css("pointer-events", "none");
 loadMovieButton.css("opacity", "0.2");
 loadMovieButton.css("pointer-events", "none");
-
 
 // Function for geting movie results from API
 function getMovieResults(event) {
@@ -62,7 +62,6 @@ function saveMovieResult(event) {
     saveMovieFeedback.text("Movie Saved!");
     loadMovieButton.css("opacity", "1.0");
     loadMovieButton.css("pointer-events", "all");
-    // saveMovieFeedback.attr("class", "fade-out-save");
 }
 
 // Loading latest movie from local storage
@@ -77,7 +76,6 @@ function loadMovieResult(event) {
     title.text(loadedMovie.title);
     overview.text(loadedMovie.overview);
     saveMovieFeedback.text("Movie Loaded!");
-    // saveMovieFeedback.attr("class", "fade-out-load");
 }
 
 // Button event listeners
@@ -95,14 +93,14 @@ let findDrinkButton = $('#drinkNameSubmit');
 let saveDrinkButton = $('#saveDrink');
 let loadDrinkButton = $('#loadDrink');
 let saveDrinkFeedback = $('#saveDrinkFeedback');
-let drinkError = $('#drinkError');
 let randomDrink;
 
-
+// Stock image attributes
 drinkPoster.attr("src", "assets/images/drink-placeholder.png");
 drinkPoster.attr("height", "300px");
 drinkPoster.attr("width", "300px");
 
+// Disabling save/load buttons on app start
 saveDrinkButton.css("opacity", "0.2");
 saveDrinkButton.css("pointer-events", "none");
 loadDrinkButton.css("opacity", "0.2");
@@ -127,13 +125,10 @@ function findDrinkByName(event) {
           
           response.json().then(function(data) {
             if (data.drinks === null) {
-              drinkError.text("No search results returned. Please try again.")
-            } else {
-              drinkError.text("");
+              saveDrinkFeedback.text("No results, please try again.");
             }
             randomDrink = data.drinks[Math.floor(Math.random() * data.drinks.length)];
             console.log(randomDrink);
-
             drinkPoster.attr("src", randomDrink.strDrinkThumb);
             drinkPoster.attr("height", "300px");
             drinkPoster.attr("width", "300px");
@@ -141,9 +136,9 @@ function findDrinkByName(event) {
             const ingredientList = [];
             drinkIngredients.text("");
             for (let i = 1; i < 16; i++) {
-              // Address null values for drinkMeasure
               let drinkIngredient = randomDrink['strIngredient' + i];
               let drinkMeasure = randomDrink['strMeasure' + i];
+              // Address null values for drinkMeasure
               if(drinkIngredient === null) {
           
                 break;
@@ -170,26 +165,26 @@ function findDrinkByName(event) {
       )
       .catch(function(err) {
         console.log('Fetch Error :-S', err);
-
       });
     }
     
       getCocktail(); 
   
 }
+
+// Save latest drink to local storage
 function saveDrinkResult(event) {
   event.preventDefault();
   let savedDrink = localStorage.setItem("savedDrink", JSON.stringify(randomDrink));
   saveDrinkFeedback.text("Drink Saved!");
   loadDrinkButton.css("opacity", "1.0");
   loadDrinkButton.css("pointer-events", "all");
-  drinkError.text("");
 }
 
+// Load latest drink from local storage
 function loadDrinkResult(event) {
   event.preventDefault();
   let loadedDrink = JSON.parse(localStorage.getItem("savedDrink"));
-  console.log(loadedDrink);
   let loadedDrinkPoster = loadedDrink.strDrinkThumb;
   drinkPoster.attr("src", loadedDrink.strDrinkThumb);
   drinkPoster.attr("height", "300px");
@@ -205,8 +200,6 @@ function loadDrinkResult(event) {
 
       break;
     }
-    console.log(drinkIngredientLoad);
-    console.log(drinkMeasureLoad);
     let ingredientsLoad = "";
       if (drinkMeasureLoad === null) {
         ingredientsLoad = drinkIngredientLoad;
@@ -234,13 +227,13 @@ let saveMeal = $('#saveMeal');
 let loadMeal = $('#loadMeal');
 let mealRecipe = $('#mealRecipe');
 let saveMealFeedback = $('#saveMealFeedback');
-let mealError = $('mealError');
 
-
+// Meal stock image
 mealPicture.attr("src", "assets/images/meal-placeholder.png");
 mealPicture.attr("height", "300px");
 mealPicture.attr("width", "300px");
 
+// Disabling save/load buttons on app start
 saveMeal.css("opacity", "0.2");
 saveMeal.css("pointer-events", "none");
 loadMeal.css("opacity", "0.2");
@@ -256,9 +249,7 @@ function findDinnerByMainIngredient(e) {
   console.log(mealName);
   let mealNameDiv = document.getElementById('mealNameDiv');
   let newAPIURL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + mealName;
-  // let newAPIURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=" + mealName;
 
-  // TODO: Sometimes a search doesn't return anything, or user input is faulty, fix this 
   function getMeal() {
     fetch(newAPIURL).then(function(response) {
       if (response.status !== 200) {
@@ -268,11 +259,8 @@ function findDinnerByMainIngredient(e) {
       // Add a link out to the site
       response.json().then(function(data){
         if (data.meals === null) {
-          mealError.text("No search results returned. Please try again.")
-        } else {
-          mealError.text("");
+          saveMealFeedback.text("No results, please try again.");
         }
-        console.log(data);
         randomMeal = data.meals[Math.floor(Math.random() * data.meals.length)];
         console.log(randomMeal);
         let mealPictureURL = randomMeal.strMealThumb;
@@ -294,32 +282,32 @@ getMeal();
 
 
 }
-  
-  function saveMealResult(event) {
-    event.preventDefault();
-    let savedMeal = localStorage.setItem("savedMeal", JSON.stringify(randomMeal));
-    saveMealFeedback.text("Meal Saved!");
-    loadMeal.css("opacity", "1.0");
-    loadMeal.css("pointer-events", "all");
-    mealError.text("");
+
+// Save meal function
+function saveMealResult(event) {
+  event.preventDefault();
+  let savedMeal = localStorage.setItem("savedMeal", JSON.stringify(randomMeal));
+  saveMealFeedback.text("Meal Saved!");
+  loadMeal.css("opacity", "1.0");
+  loadMeal.css("pointer-events", "all");
 }
 
-  function loadMealResult(event) {
-    event.preventDefault();
-    let loadedMeal = JSON.parse(localStorage.getItem("savedMeal"));
-    console.log(loadedMeal);
-    let loadedMealImg = loadedMeal.strMealThumb;
-    mealPicture.attr("src", loadedMealImg);
-    mealPicture.attr("height", "300px");
-    mealPicture.attr("width", "300px");
-    mealTitle.text(loadedMeal.strMeal);
-    mealRecipe.attr("href", loadedMeal.strYoutube);
-    mealRecipe.attr("target", "_blank");
-    saveMealFeedback.text("Meal Loaded!");
-    mealError.text("");
-  }
+// Load meal function
+function loadMealResult(event) {
+  event.preventDefault();
+  let loadedMeal = JSON.parse(localStorage.getItem("savedMeal"));
+  console.log(loadedMeal);
+  let loadedMealImg = loadedMeal.strMealThumb;
+  mealPicture.attr("src", loadedMealImg);
+  mealPicture.attr("height", "300px");
+  mealPicture.attr("width", "300px");
+  mealTitle.text(loadedMeal.strMeal);
+  mealRecipe.attr("href", loadedMeal.strYoutube);
+  mealRecipe.attr("target", "_blank");
+  saveMealFeedback.text("Meal Loaded!");
+}
 
-  document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
-  saveMeal.on('click', saveMealResult);
-  loadMeal.on('click', loadMealResult);
+document.querySelector("#mealNameSubmit").addEventListener('click', findDinnerByMainIngredient);
+saveMeal.on('click', saveMealResult);
+loadMeal.on('click', loadMealResult);
   
