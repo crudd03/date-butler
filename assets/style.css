@@ -1,56 +1,74 @@
-#drink-section img {
-    width: 10%;
-    height: auto;
-}
+
 
 body {
-    background-color: black;
+    background-color: #c7abe1;
     font-family: 'Shippori Mincho B1', serif;
 }
 
+.heading-custom {
+    color: #24383c;
+}
+
 p {
-    color: white;
+    color: #dfcebc;
 }
 
 h5 {
-    color: white;
+    color: #24383c;
 }
 
 div {
-    color: white;
+    color: #24383c;
 }
 
+
+
 #description {
-  background-color: #900;
-  color: black;
-  border-radius: 20px;
+    background-color: #24383c;
+    color: #c7abe1;
+    border-radius: 0px;
 }
 .card {
-    background-color: black;
-    color: white;
+    background-color: #c7abe1;
+    color: #f5f3eb;
+    border: none;
+}
+
+.card-title-custom {
+    color: #24383c;
 }
 
 .header {
-    background-color: black;
+    background-color: #c7abe1;;
 }
 
 .card-body {
     padding: 0;
+
 }
 
 .saveFeedback {
-    color: green;
+    color: #24383c;
     font-style: italic;
 }
 
 .btn-custom {
-  background-color: #900;
-  color: black;
-  border: #900;
-  border-radius: 0;
+    background-color: #24383c;
+    color: #f5f3eb;
+    border: #24383c;
+    border-radius: 0;
+}
+
+.btn-custom:hover,
+.btn-custom:active,
+.btn-custom:focus {
+    background-color: #24383c;
+    color: #f5f3eb;
+    border: #24383c;
+    border-radius: 0;
 }
 
 .img-custom {
-  height: 300px;
-  width: 300px;
+    height: 300px;
+    width: 300px;
 }
